@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "DeepSeek",
+  title: "DeepSeek - Prem",
   description: "Full Stack Project",
 };
 

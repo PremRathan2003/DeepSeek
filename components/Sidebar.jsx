@@ -1,15 +1,15 @@
 import { assets } from '@/assets/assets'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { useClerk, UserButton} from '@clerk/nextjs'
+import { useClerk, UserButton } from '@clerk/nextjs'
 import { useAppContext } from '@/context/AppContext'
 import ChatLabel from './ChatLabel'
 
 const Sidebar = ({ expand, setExpand }) => {
 
-    const {openSignIn} = useClerk()
-    const {user, chats, createNewChat} = useAppContext()
-    const [openMenu, setOpenMenu] = useState({id: 0, open: false})
+    const { openSignIn } = useClerk()
+    const { user, chats, createNewChat } = useAppContext()
+    const [openMenu, setOpenMenu] = useState({ id: 0, open: false })
 
     return (
         <div className={`flex flex-col justify-between bg-[#212327] pt-7 transition-all z-50 max-md:absolute max-md:h-screen ${expand ? 'p-4 w-64' : "md:w-20 w-0 max-md:overflow-hidden"}`}>
@@ -37,17 +37,26 @@ const Sidebar = ({ expand, setExpand }) => {
                 </button>
                 <div className={`mt-9 text-white/25 text-sm ${expand ? "block" : "hidden"}`}>
                     <p className='my-1'>Recents</p>
-                    {chats.map((chat) => <ChatLabel 
-                    key={chat._id}
-                    id={chat._id} 
-                    name={chat.name} 
-                    openMenu = {openMenu} 
-                    setOpenMenu={setOpenMenu} /> 
-                )}
+                    {chats.map((chat) => <ChatLabel
+                        key={chat._id}
+                        id={chat._id}
+                        name={chat.name}
+                        openMenu={openMenu}
+                        setOpenMenu={setOpenMenu} />
+                    )}
                 </div>
             </div>
-
             <div>
+
+                <div className="flex gap-2 items-center justify-center">
+                    {/* LinkedIn Link */}
+                    <a href="https://www.linkedin.com/in/premrathan/" target="_blank" rel="noopener noreferrer">
+                        <div className={`flex items-center justify-center ${expand ? "p-2 rounded-lg w-12" : "h-9 w-5 mx-auto hover:bg-gray-500/30 rounded-lg"}`}>
+                            <img width="48" height="48" src="https://img.icons8.com/fluency/48/linkedin.png" alt="linkedin" />
+                        </div>
+                    </a>
+                </div>
+
                 <div className={`flex items-center cursor-pointer group relative ${expand ? "gap-1 text-white/80 text-sm p-2.5 border border-primary rounded-lg hover:bg-white/10 cursor-pointer" : "h-10 w-10 mx-auto hover:bg-gray-500/30 rounded-lg"}`}>
                     <Image className={expand ? 'w-5' : 'w-6.5 mx-auto'} src={expand ? assets.phone_icon : assets.phone_icon_dull} alt='' />
                     <div className={`absolute -top-60 pb-8 ${!expand && "-right-40"} opacity-0 group-hover:opacity-100 hidden group-hover:block transition`}>
@@ -61,11 +70,11 @@ const Sidebar = ({ expand, setExpand }) => {
                     {expand && <> <span>Get App</span> <Image alt="" src={assets.new_icon} />
                     </>}
                 </div>
-                <div  onClick={user ? null : openSignIn}
-                 className={`flex items-center ${expand ? 'hover:bg-white/10 rounded-lg' : "justify-center w-full"} gap-3 text-white/60 text-sm p-2 mt-2 cursor-pointer`}>
+                <div onClick={user ? null : openSignIn}
+                    className={`flex items-center ${expand ? 'hover:bg-white/10 rounded-lg' : "justify-center w-full"} gap-3 text-white/60 text-sm p-2 mt-2 cursor-pointer`}>
                     {
-                        user ? <UserButton/>
-                        : <Image src = {assets.profile_icon} alt="" className='w-7'/>
+                        user ? <UserButton />
+                            : <Image src={assets.profile_icon} alt="" className='w-7' />
 
                     }
                     {expand && <span>My Profile</span>}
