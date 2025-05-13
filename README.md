@@ -33,20 +33,6 @@ A fully functional DeepSeek AI clone built with **Next.js**, **DeepSeek API**, *
 
 ---
 
-## 📁 Folder Structure
-
-/app → Next.js App Router structure
-/components → Reusable React components
-/lib → Utilities and API logic
-/models → Mongoose models for MongoDB
-/api → API route handlers
-/middleware.ts → Auth middleware for protected routes
-/public → Static assets
-/styles → Global styles
-.env.local → Environment variables
-
----
-
 ## ⚙️ Setup Instructions
 
 1. **Clone the repository**
